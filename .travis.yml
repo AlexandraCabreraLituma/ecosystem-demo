@@ -1,13 +1,13 @@
 language: java
 branches:
   only:
-  - develop
-  - /^release-[0-999].[0-999]$/
-  - master
+    - develop
+    - /^release-[0-999].[0-999]$/
+    - master
 notifications:
   email:
     recipients:
-    - alecabreralituma2@gmail.com
+      - j.bernsssal@upm.es
 # services:
 # - mysql
 # - mongodb
@@ -16,3 +16,15 @@ notifications:
 script:
   #Test unitario y de integracion con cobertura (jacoco)
   - mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify
+
+  #SONARCLOUD
+  - mvn sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=alexandracabreralituma-github -Dsonar.login=$SONAR
+
+#Deploy https://iwvg-ecosystem.herokuapp.com/api
+deploy:
+  provider: heroku
+  api_key:
+    secure: $HEROKU
+  on:
+    branch: master
+#  app: iwvg-ecosystem, por defecto, nombre del artefacto
