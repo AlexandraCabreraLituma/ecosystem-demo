@@ -18,6 +18,7 @@ public class Badge {
             "<text x=\"%d\" y=\"14\">%s</text>" +
             "</g>" +
             "</svg>";
+
     private static final int TEXT_MARGIN = 12;
     private static final int CHARACTER_WIDTH = 6;
 
